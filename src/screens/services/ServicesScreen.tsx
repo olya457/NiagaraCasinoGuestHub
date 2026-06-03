@@ -24,18 +24,25 @@ export function ServicesScreen(): React.JSX.Element {
         title="Book Services"
         subtitle="Choose a service and prepare your visit in advance."
       />
-      <View style={styles.list}>
+      <View style={[styles.list, responsive.isSmallHeight && styles.listSmall]}>
         {services.map(service => (
           <InfoCard
             key={service.id}
-            style={[styles.card, responsive.isNarrow && styles.cardNarrow]}>
+            style={[
+              styles.card,
+              responsive.isSmallHeight && styles.cardSmall,
+              responsive.isNarrow && styles.cardNarrow,
+            ]}>
             <View
               style={[
                 styles.iconBox,
+                responsive.isSmallHeight && styles.iconBoxSmall,
                 responsive.isNarrow && styles.iconBoxNarrow,
                 {borderColor: `${service.accent}66`},
               ]}>
-              <Text style={styles.icon}>{service.icon}</Text>
+              <Text style={[styles.icon, responsive.isSmallHeight && styles.iconSmall]}>
+                {service.icon}
+              </Text>
             </View>
             <View style={styles.content}>
               <View style={styles.topRow}>
@@ -44,12 +51,23 @@ export function ServicesScreen(): React.JSX.Element {
                   {service.time}
                 </Text>
               </View>
-              <Text style={styles.title}>{service.title}</Text>
-              <Text style={styles.description}>{service.description}</Text>
+              <Text
+                style={[styles.title, responsive.isSmallHeight && styles.titleSmall]}
+                numberOfLines={2}>
+                {service.title}
+              </Text>
+              <Text
+                style={[
+                  styles.description,
+                  responsive.isSmallHeight && styles.descriptionSmall,
+                ]}
+                numberOfLines={responsive.isSmallHeight ? 2 : 3}>
+                {service.description}
+              </Text>
               <PrimaryButton
                 title="Book Now"
                 onPress={() => navigation.navigate('Booking', {serviceId: service.id})}
-                style={styles.button}
+                style={[styles.button, responsive.isSmallHeight && styles.buttonSmall]}
               />
             </View>
           </InfoCard>
@@ -63,11 +81,18 @@ const styles = StyleSheet.create({
   list: {
     gap: 14,
   },
+  listSmall: {
+    gap: 10,
+  },
   card: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     padding: 14,
     gap: 12,
+  },
+  cardSmall: {
+    padding: 12,
+    gap: 10,
   },
   cardNarrow: {
     padding: 12,
@@ -82,12 +107,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  iconBoxSmall: {
+    width: 40,
+    height: 40,
+  },
   iconBoxNarrow: {
     width: 40,
     height: 40,
   },
   icon: {
     fontSize: 20,
+  },
+  iconSmall: {
+    fontSize: 18,
   },
   content: {
     flex: 1,
@@ -115,6 +147,11 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 8,
   },
+  titleSmall: {
+    fontSize: 16,
+    lineHeight: 20,
+    marginTop: 6,
+  },
   description: {
     color: colors.textMuted,
     fontFamily: typography.body,
@@ -122,10 +159,19 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginTop: 8,
   },
+  descriptionSmall: {
+    fontSize: 12,
+    lineHeight: 18,
+    marginTop: 6,
+  },
   button: {
     alignSelf: 'flex-start',
     minWidth: 112,
     minHeight: 42,
     marginTop: 14,
+  },
+  buttonSmall: {
+    minHeight: 38,
+    marginTop: 10,
   },
 });

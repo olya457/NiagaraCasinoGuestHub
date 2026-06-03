@@ -36,11 +36,11 @@ export function AppScreen({
 }: Props): React.JSX.Element {
   const insets = useSafeAreaInsets();
   const responsive = useResponsive();
-  const topGap = responsive.isTinyHeight ? 8 : compactTop ? 8 : 18;
+  const topGap = responsive.isTinyHeight ? 6 : compactTop ? 8 : 18;
   const paddingTop = topInset(insets.top) + topGap;
   const paddingBottom = withTabs
-    ? responsive.tabHeight + tabBottomGap() + (responsive.isSmallHeight ? 62 : 34)
-    : bottomInset(insets.bottom) + (responsive.isSmallHeight ? 44 : 24) + bottomExtra;
+    ? responsive.tabHeight + tabBottomGap() + (responsive.isTinyHeight ? 86 : responsive.isSmallHeight ? 72 : 40)
+    : bottomInset(insets.bottom) + (responsive.isTinyHeight ? 58 : responsive.isSmallHeight ? 48 : 24) + bottomExtra;
 
   if (!scroll) {
     return (
@@ -73,6 +73,7 @@ export function AppScreen({
         },
         contentStyle,
       ]}
+      keyboardShouldPersistTaps="handled"
       showsVerticalScrollIndicator={false}>
       {children}
     </ScrollView>

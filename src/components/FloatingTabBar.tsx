@@ -32,6 +32,7 @@ export function FloatingTabBar({
           bottom: tabBottomGap(),
           height: responsive.tabHeight,
         },
+        responsive.isTinyHeight && styles.panelTiny,
         responsive.isNarrow ? styles.panelNarrow : styles.panelWide,
       ]}>
       {tabs.map(tab => {
@@ -41,13 +42,27 @@ export function FloatingTabBar({
             key={tab.key}
             onPress={() => onChange(tab.key)}
             style={({pressed}) => [styles.item, pressed && styles.pressed]}>
-            <View style={[styles.iconWrap, selected && styles.iconActive]}>
-              <Text style={[styles.icon, selected && styles.iconSelected]}>
+            <View
+              style={[
+                styles.iconWrap,
+                responsive.isTinyHeight && styles.iconWrapTiny,
+                selected && styles.iconActive,
+              ]}>
+              <Text
+                style={[
+                  styles.icon,
+                  responsive.isTinyHeight && styles.iconTiny,
+                  selected && styles.iconSelected,
+                ]}>
                 {tab.icon}
               </Text>
             </View>
             <Text
-              style={[styles.label, selected && styles.labelActive]}
+              style={[
+                styles.label,
+                responsive.isTinyHeight && styles.labelTiny,
+                selected && styles.labelActive,
+              ]}
               numberOfLines={1}
               adjustsFontSizeToFit>
               {tab.label}
@@ -76,6 +91,10 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 10},
     elevation: 9,
   },
+  panelTiny: {
+    borderRadius: 18,
+    paddingHorizontal: 6,
+  },
   panelWide: {
     left: 16,
     right: 16,
@@ -101,6 +120,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 7,
   },
+  iconWrapTiny: {
+    minWidth: 28,
+    height: 26,
+    borderRadius: 13,
+    paddingHorizontal: 5,
+  },
   iconActive: {
     backgroundColor: colors.cardAlt,
     borderWidth: 1,
@@ -111,6 +136,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '900',
   },
+  iconTiny: {
+    fontSize: 14,
+  },
   iconSelected: {
     color: colors.gold,
   },
@@ -120,6 +148,10 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 3,
     fontWeight: '700',
+  },
+  labelTiny: {
+    fontSize: 9,
+    marginTop: 2,
   },
   labelActive: {
     color: colors.gold,

@@ -39,22 +39,34 @@ export function HallsScreen(): React.JSX.Element {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.filters}>
+        contentContainerStyle={[
+          styles.filters,
+          responsive.isSmallHeight && styles.filtersSmall,
+        ]}>
         {hallFilters.map(item => {
           const active = item === filter;
           return (
             <Pressable
               key={item}
               onPress={() => setFilter(item)}
-              style={[styles.filter, active && styles.filterActive]}>
-              <Text style={[styles.filterText, active && styles.filterTextActive]}>
+              style={[
+                styles.filter,
+                responsive.isNarrow && styles.filterNarrow,
+                active && styles.filterActive,
+              ]}>
+              <Text
+                style={[
+                  styles.filterText,
+                  responsive.isNarrow && styles.filterTextNarrow,
+                  active && styles.filterTextActive,
+                ]}>
                 {item}
               </Text>
             </Pressable>
           );
         })}
       </ScrollView>
-      <View style={styles.list}>
+      <View style={[styles.list, responsive.isSmallHeight && styles.listSmall]}>
         {halls.map(hall => (
           <View key={hall.id} style={styles.card}>
             <Image
@@ -62,21 +74,34 @@ export function HallsScreen(): React.JSX.Element {
               style={[styles.image, {height: responsive.cardImageHeight}]}
               resizeMode="cover"
             />
-            <View style={styles.cardBody}>
+            <View style={[styles.cardBody, responsive.isSmallHeight && styles.cardBodySmall]}>
               <View style={styles.titleRow}>
-                <Text style={styles.cardTitle} numberOfLines={2}>
+                <Text
+                  style={[
+                    styles.cardTitle,
+                    responsive.isSmallHeight && styles.cardTitleSmall,
+                  ]}
+                  numberOfLines={2}>
                   {hall.title}
                 </Text>
                 <Badge label={hall.tag} tone={toneForTag(hall.tag)} />
               </View>
-              <Text style={styles.description} numberOfLines={3}>
+              <Text
+                style={[
+                  styles.description,
+                  responsive.isSmallHeight && styles.descriptionSmall,
+                ]}
+                numberOfLines={responsive.isSmallHeight ? 2 : 3}>
                 {hall.description}
               </Text>
               <PrimaryButton
                 title="View Details"
                 variant="outline"
                 onPress={() => navigation.navigate('HallDetail', {hallId: hall.id})}
-                style={styles.detailButton}
+                style={[
+                  styles.detailButton,
+                  responsive.isSmallHeight && styles.detailButtonSmall,
+                ]}
               />
             </View>
           </View>
@@ -108,6 +133,9 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     marginBottom: 14,
   },
+  filtersSmall: {
+    marginBottom: 10,
+  },
   filter: {
     borderRadius: 18,
     backgroundColor: colors.card,
@@ -115,6 +143,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     paddingHorizontal: 18,
     paddingVertical: 9,
+  },
+  filterNarrow: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
   },
   filterActive: {
     backgroundColor: colors.gold,
@@ -126,11 +158,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
   },
+  filterTextNarrow: {
+    fontSize: 13,
+  },
   filterTextActive: {
     color: colors.black,
   },
   list: {
     gap: 16,
+  },
+  listSmall: {
+    gap: 12,
   },
   card: {
     borderRadius: 18,
@@ -146,6 +184,9 @@ const styles = StyleSheet.create({
   cardBody: {
     padding: 16,
   },
+  cardBodySmall: {
+    padding: 13,
+  },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -160,6 +201,10 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 24,
   },
+  cardTitleSmall: {
+    fontSize: 17,
+    lineHeight: 21,
+  },
   description: {
     color: colors.textMuted,
     fontFamily: typography.body,
@@ -167,9 +212,18 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 10,
   },
+  descriptionSmall: {
+    fontSize: 13,
+    lineHeight: 19,
+    marginTop: 8,
+  },
   detailButton: {
     alignSelf: 'flex-start',
     minHeight: 42,
     marginTop: 15,
+  },
+  detailButtonSmall: {
+    minHeight: 38,
+    marginTop: 12,
   },
 });

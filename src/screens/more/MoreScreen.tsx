@@ -6,6 +6,7 @@ import {AppScreen} from '../../components/AppScreen';
 import {InfoCard} from '../../components/InfoCard';
 import {ScreenHeader} from '../../components/ScreenHeader';
 import {colors, typography} from '../../constants/theme';
+import {useResponsive} from '../../hooks/useResponsive';
 import type {RootStackParamList} from '../../navigation/types';
 
 type Navigation = NativeStackNavigationProp<RootStackParamList>;
@@ -56,25 +57,42 @@ const menu: {
 
 export function MoreScreen(): React.JSX.Element {
   const navigation = useNavigation<Navigation>();
+  const responsive = useResponsive();
 
   return (
     <AppScreen withTabs>
       <ScreenHeader title="More" />
-      <View style={styles.list}>
+      <View style={[styles.list, responsive.isSmallHeight && styles.listSmall]}>
         {menu.map(item => (
           <Pressable
             key={item.title}
             onPress={() => navigation.navigate(item.route as never)}
             style={({pressed}) => pressed && styles.pressed}>
-            <InfoCard style={styles.card}>
-              <View style={styles.iconBox}>
-                <Text style={styles.icon}>{item.icon}</Text>
+            <InfoCard style={[styles.card, responsive.isSmallHeight && styles.cardSmall]}>
+              <View style={[styles.iconBox, responsive.isSmallHeight && styles.iconBoxSmall]}>
+                <Text style={[styles.icon, responsive.isSmallHeight && styles.iconSmall]}>
+                  {item.icon}
+                </Text>
               </View>
               <View style={styles.textBlock}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.subtitle}>{item.subtitle}</Text>
+                <Text
+                  style={[styles.title, responsive.isSmallHeight && styles.titleSmall]}
+                  numberOfLines={1}
+                  adjustsFontSizeToFit>
+                  {item.title}
+                </Text>
+                <Text
+                  style={[
+                    styles.subtitle,
+                    responsive.isSmallHeight && styles.subtitleSmall,
+                  ]}
+                  numberOfLines={responsive.isSmallHeight ? 1 : 2}>
+                  {item.subtitle}
+                </Text>
               </View>
-              <Text style={styles.chevron}>›</Text>
+              <Text style={[styles.chevron, responsive.isSmallHeight && styles.chevronSmall]}>
+                ›
+              </Text>
             </InfoCard>
           </Pressable>
         ))}
@@ -87,6 +105,9 @@ const styles = StyleSheet.create({
   list: {
     gap: 12,
   },
+  listSmall: {
+    gap: 9,
+  },
   pressed: {
     opacity: 0.74,
   },
@@ -97,6 +118,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
   },
+  cardSmall: {
+    minHeight: 54,
+    padding: 10,
+    gap: 10,
+  },
   iconBox: {
     width: 38,
     height: 38,
@@ -105,8 +131,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  iconBoxSmall: {
+    width: 34,
+    height: 34,
+  },
   icon: {
     fontSize: 18,
+  },
+  iconSmall: {
+    fontSize: 16,
   },
   textBlock: {
     flex: 1,
@@ -118,14 +151,24 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '800',
   },
+  titleSmall: {
+    fontSize: 14,
+  },
   subtitle: {
     color: colors.textMuted,
     fontFamily: typography.body,
     fontSize: 12,
     marginTop: 3,
   },
+  subtitleSmall: {
+    fontSize: 11,
+    marginTop: 2,
+  },
   chevron: {
     color: colors.textDim,
     fontSize: 24,
+  },
+  chevronSmall: {
+    fontSize: 21,
   },
 });

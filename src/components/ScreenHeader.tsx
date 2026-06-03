@@ -21,16 +21,35 @@ export function ScreenHeader({
   return (
     <View style={[styles.wrap, responsive.isSmallHeight && styles.wrapSmall]}>
       {back ? (
-        <Pressable onPress={onBack} style={styles.back}>
-          <Text style={styles.backText}>‹ Back</Text>
+        <Pressable
+          onPress={onBack}
+          style={[styles.back, responsive.isSmallHeight && styles.backSmall]}>
+          <Text style={[styles.backText, responsive.isSmallHeight && styles.backTextSmall]}>
+            ‹ Back
+          </Text>
         </Pressable>
       ) : null}
       {title ? (
-        <Text style={styles.title} numberOfLines={2} adjustsFontSizeToFit>
+        <Text
+          style={[
+            styles.title,
+            responsive.isNarrow && styles.titleNarrow,
+            responsive.isSmallHeight && styles.titleSmall,
+          ]}
+          numberOfLines={2}
+          adjustsFontSizeToFit>
           {title}
         </Text>
       ) : null}
-      {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+      {subtitle ? (
+        <Text
+          style={[
+            styles.subtitle,
+            responsive.isSmallHeight && styles.subtitleSmall,
+          ]}>
+          {subtitle}
+        </Text>
+      ) : null}
     </View>
   );
 }
@@ -52,11 +71,19 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     marginBottom: 14,
   },
+  backSmall: {
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 10,
+  },
   backText: {
     color: colors.gold,
     fontFamily: typography.body,
     fontSize: 14,
     fontWeight: '700',
+  },
+  backTextSmall: {
+    fontSize: 13,
   },
   title: {
     color: colors.text,
@@ -65,11 +92,24 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     lineHeight: 36,
   },
+  titleNarrow: {
+    fontSize: 27,
+    lineHeight: 32,
+  },
+  titleSmall: {
+    fontSize: 26,
+    lineHeight: 31,
+  },
   subtitle: {
     marginTop: 6,
     color: colors.textMuted,
     fontFamily: typography.body,
     fontSize: 15,
     lineHeight: 22,
+  },
+  subtitleSmall: {
+    fontSize: 13,
+    lineHeight: 19,
+    marginTop: 4,
   },
 });

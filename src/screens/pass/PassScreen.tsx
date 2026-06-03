@@ -30,42 +30,66 @@ export function PassScreen(): React.JSX.Element {
       />
       <Pressable
         onPress={() => navigation.navigate('FullQr')}
-        style={[styles.card, responsive.isNarrow && styles.cardNarrow]}>
+        style={[
+          styles.card,
+          responsive.isSmallHeight && styles.cardSmall,
+          responsive.isNarrow && styles.cardNarrow,
+        ]}>
         <View style={styles.cardTop}>
           <View>
-            <Text style={styles.kicker}>GUEST ACCESS</Text>
-            <Text style={styles.cardName}>Niagara Casino: Guest Hub</Text>
+            <Text style={[styles.kicker, responsive.isSmallHeight && styles.kickerSmall]}>
+              GUEST ACCESS
+            </Text>
+            <Text
+              style={[
+                styles.cardName,
+                responsive.isSmallHeight && styles.cardNameSmall,
+              ]}>
+              Niagara Casino: Guest Hub
+            </Text>
           </View>
-          <View style={styles.statusPill}>
-            <Text style={styles.statusText}>Valid Today</Text>
+          <View style={[styles.statusPill, responsive.isNarrow && styles.statusPillNarrow]}>
+            <Text style={[styles.statusText, responsive.isNarrow && styles.statusTextNarrow]}>
+              Valid Today
+            </Text>
           </View>
         </View>
-        <View style={styles.qrWrap}>
+        <View style={[styles.qrWrap, responsive.isSmallHeight && styles.qrWrapSmall]}>
           <QrMatrix size={responsive.qrSize} />
         </View>
         <View style={styles.cardBottom}>
           <View>
             <Text style={styles.metaLabel}>PASS ID</Text>
-            <Text style={styles.passId}>NCGH-2048</Text>
+            <Text style={[styles.passId, responsive.isNarrow && styles.passIdNarrow]}>
+              NCGH-2048
+            </Text>
           </View>
           <View>
             <Text style={[styles.metaLabel, styles.rightText]}>STATUS</Text>
             <Text style={styles.valid}>Valid Today</Text>
           </View>
         </View>
-        <Text style={styles.tap}>Tap to Brighten</Text>
+        <Text style={[styles.tap, responsive.isSmallHeight && styles.tapSmall]}>
+          Tap to Brighten
+        </Text>
       </Pressable>
       <PrimaryButton
         title="Show Full Screen QR"
         onPress={() => navigation.navigate('FullQr')}
-        style={styles.button}
+        style={[styles.button, responsive.isSmallHeight && styles.buttonSmall]}
       />
-      <Text style={styles.sectionTitle}>Pass Notes</Text>
+      <Text style={[styles.sectionTitle, responsive.isSmallHeight && styles.sectionTitleSmall]}>
+        Pass Notes
+      </Text>
       <View style={styles.notes}>
         {notes.map(note => (
-          <View key={note} style={styles.noteRow}>
+          <View
+            key={note}
+            style={[styles.noteRow, responsive.isSmallHeight && styles.noteRowSmall]}>
             <Text style={styles.bullet}>•</Text>
-            <Text style={styles.note}>{note}</Text>
+            <Text style={[styles.note, responsive.isSmallHeight && styles.noteSmall]}>
+              {note}
+            </Text>
           </View>
         ))}
       </View>
@@ -85,6 +109,9 @@ const styles = StyleSheet.create({
   cardNarrow: {
     padding: 18,
   },
+  cardSmall: {
+    padding: 18,
+  },
   cardTop: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -98,11 +125,19 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 2,
   },
+  kickerSmall: {
+    fontSize: 10,
+    letterSpacing: 1.4,
+  },
   cardName: {
     color: colors.text,
     fontFamily: typography.display,
     fontSize: 15,
     marginTop: 7,
+  },
+  cardNameSmall: {
+    fontSize: 14,
+    marginTop: 5,
   },
   statusPill: {
     borderRadius: 12,
@@ -110,16 +145,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
+  statusPillNarrow: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
   statusText: {
     color: colors.mint,
     fontFamily: typography.body,
     fontSize: 11,
     fontWeight: '800',
   },
+  statusTextNarrow: {
+    fontSize: 10,
+  },
   qrWrap: {
     alignItems: 'center',
     marginTop: 24,
     marginBottom: 26,
+  },
+  qrWrapSmall: {
+    marginTop: 16,
+    marginBottom: 18,
   },
   cardBottom: {
     flexDirection: 'row',
@@ -144,6 +190,10 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     marginTop: 6,
   },
+  passIdNarrow: {
+    fontSize: 14,
+    letterSpacing: 1.4,
+  },
   valid: {
     color: colors.mint,
     fontFamily: typography.body,
@@ -158,8 +208,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 20,
   },
+  tapSmall: {
+    marginTop: 14,
+    fontSize: 11,
+  },
   button: {
     marginTop: 18,
+  },
+  buttonSmall: {
+    marginTop: 12,
   },
   sectionTitle: {
     color: colors.text,
@@ -168,6 +225,11 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginTop: 28,
     marginBottom: 12,
+  },
+  sectionTitleSmall: {
+    fontSize: 18,
+    marginTop: 20,
+    marginBottom: 8,
   },
   notes: {
     borderTopWidth: 1,
@@ -181,6 +243,9 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
     paddingVertical: 15,
   },
+  noteRowSmall: {
+    paddingVertical: 11,
+  },
   bullet: {
     color: colors.gold,
     fontSize: 22,
@@ -192,5 +257,9 @@ const styles = StyleSheet.create({
     fontFamily: typography.body,
     fontSize: 14,
     lineHeight: 21,
+  },
+  noteSmall: {
+    fontSize: 13,
+    lineHeight: 19,
   },
 });
