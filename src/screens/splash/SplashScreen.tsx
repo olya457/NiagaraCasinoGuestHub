@@ -28,7 +28,7 @@ export function SplashScreen({onFinish}: Props): React.JSX.Element {
       <View style={[styles.content, {paddingTop: topInset(insets.top)}]}>
         <Image source={images.logo} style={styles.logo} resizeMode="contain" />
         <Text style={styles.kicker}>NIAGARA CASINO</Text>
-        <Text style={styles.title}>Guest Hub</Text>
+        <Text style={styles.title}>{'Hub Niagara Casino\nQuest'}</Text>
         <Text style={styles.body}>Preparing your guest access...</Text>
         <View style={styles.track}>
           <View style={styles.bar} />
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: '800',
     lineHeight: 40,
+    textAlign: 'center',
   },
   body: {
     color: colors.textMuted,
