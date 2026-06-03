@@ -31,5 +31,27 @@ target 'NiagaraCasinoGuestHub' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'fmt'
+
+      target.build_configurations.each do |build_config|
+        build_config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+      end
+    end
+
+    [
+      File.join(installer.sandbox.root, 'fmt', 'include', 'fmt', 'base.h'),
+      File.join(installer.sandbox.root, 'fmt', 'include', 'fmt', 'core.h')
+    ].each do |fmt_header|
+      next unless File.exist?(fmt_header)
+
+      contents = File.read(fmt_header)
+      patched = contents.gsub('#  define FMT_USE_CONSTEVAL 1', '#  define FMT_USE_CONSTEVAL 0')
+      if patched != contents
+        File.chmod(0o644, fmt_header)
+        File.write(fmt_header, patched)
+      end
+    end
   end
 end
