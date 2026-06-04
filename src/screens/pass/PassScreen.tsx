@@ -45,7 +45,7 @@ export function PassScreen(): React.JSX.Element {
                 styles.cardName,
                 responsive.isSmallHeight && styles.cardNameSmall,
               ]}>
-              Hub Niagara Casino Quest
+              Niagara Casino: Guest Hub
             </Text>
           </View>
           <View style={[styles.statusPill, responsive.isNarrow && styles.statusPillNarrow]}>
