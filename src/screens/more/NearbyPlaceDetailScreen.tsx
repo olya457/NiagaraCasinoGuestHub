@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text} from 'react-native';
+import {Image, Linking, Platform, StyleSheet, Text} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppScreen} from '../../components/AppScreen';
 import {Badge} from '../../components/Badge';
@@ -20,6 +20,19 @@ export function NearbyPlaceDetailScreen({
   const place =
     nearbyPlaces.find(item => item.id === route.params.placeId) ?? nearbyPlaces[0];
   const responsive = useResponsive();
+
+  const openMap = async () => {
+    if (Platform.OS !== 'android') {
+      navigation.navigate('PlaceMap', {placeId: place.id});
+      return;
+    }
+
+    const label = encodeURIComponent(place.title);
+    const geoUrl = `geo:${place.latitude},${place.longitude}?q=${place.latitude},${place.longitude}(${label})`;
+    const webUrl = `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`;
+    const canOpenGeo = await Linking.canOpenURL(geoUrl);
+    await Linking.openURL(canOpenGeo ? geoUrl : webUrl);
+  };
 
   return (
     <AppScreen compactTop>
@@ -42,7 +55,7 @@ export function NearbyPlaceDetailScreen({
       </InfoCard>
       <PrimaryButton
         title="Show on Map"
-        onPress={() => navigation.navigate('PlaceMap', {placeId: place.id})}
+        onPress={openMap}
         style={styles.button}
       />
     </AppScreen>
