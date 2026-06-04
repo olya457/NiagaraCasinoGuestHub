@@ -15,7 +15,6 @@ import {GuestTipsScreen} from '../screens/more/GuestTipsScreen';
 import {MyBookingsScreen} from '../screens/more/MyBookingsScreen';
 import {NearbyPlaceDetailScreen} from '../screens/more/NearbyPlaceDetailScreen';
 import {NearbyPlacesScreen} from '../screens/more/NearbyPlacesScreen';
-import {PlaceMapScreen} from '../screens/more/PlaceMapScreen';
 import {SavedEventsScreen} from '../screens/more/SavedEventsScreen';
 import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 import {FullQrScreen} from '../screens/pass/FullQrScreen';
@@ -87,7 +86,6 @@ function AppNavigator(): React.JSX.Element {
               name="NearbyPlaceDetail"
               component={NearbyPlaceDetailScreen}
             />
-            <Stack.Screen name="PlaceMap" component={PlaceMapScreen} />
             <Stack.Screen name="SavedEvents" component={SavedEventsScreen} />
             <Stack.Screen name="MyBookings" component={MyBookingsScreen} />
             <Stack.Screen name="GuestTips" component={GuestTipsScreen} />

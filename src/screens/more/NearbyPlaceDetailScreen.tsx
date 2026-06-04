@@ -1,10 +1,9 @@
 import React from 'react';
-import {Image, Linking, Platform, StyleSheet, Text} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppScreen} from '../../components/AppScreen';
 import {Badge} from '../../components/Badge';
 import {InfoCard} from '../../components/InfoCard';
-import {PrimaryButton} from '../../components/PrimaryButton';
 import {ScreenHeader} from '../../components/ScreenHeader';
 import {colors, typography} from '../../constants/theme';
 import {nearbyPlaces} from '../../data/nearbyPlaces';
@@ -20,19 +19,6 @@ export function NearbyPlaceDetailScreen({
   const place =
     nearbyPlaces.find(item => item.id === route.params.placeId) ?? nearbyPlaces[0];
   const responsive = useResponsive();
-
-  const openMap = async () => {
-    if (Platform.OS !== 'android') {
-      navigation.navigate('PlaceMap', {placeId: place.id});
-      return;
-    }
-
-    const label = encodeURIComponent(place.title);
-    const geoUrl = `geo:${place.latitude},${place.longitude}?q=${place.latitude},${place.longitude}(${label})`;
-    const webUrl = `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`;
-    const canOpenGeo = await Linking.canOpenURL(geoUrl);
-    await Linking.openURL(canOpenGeo ? geoUrl : webUrl);
-  };
 
   return (
     <AppScreen compactTop>
@@ -53,11 +39,6 @@ export function NearbyPlaceDetailScreen({
         <Text style={styles.infoLabel}>VISITOR TIP</Text>
         <Text style={styles.infoText}>{place.tip}</Text>
       </InfoCard>
-      <PrimaryButton
-        title="Show on Map"
-        onPress={openMap}
-        style={styles.button}
-      />
     </AppScreen>
   );
 }
@@ -101,8 +82,5 @@ const styles = StyleSheet.create({
     fontFamily: typography.body,
     fontSize: 14,
     lineHeight: 21,
-  },
-  button: {
-    marginTop: 16,
   },
 });
