@@ -27,7 +27,7 @@ export function SplashScreen({onFinish}: Props): React.JSX.Element {
       <View style={styles.overlay} />
       <View style={[styles.content, {paddingTop: topInset(insets.top)}]}>
         <Image source={images.logo} style={styles.logo} resizeMode="contain" />
-        <Text style={styles.kicker}>NIAGARA CASINO</Text>
+        <Text style={styles.kicker}>NIAGARA</Text>
         <Text style={styles.title}>Guest Hub</Text>
         <Text style={styles.body}>Preparing your guest access...</Text>
         <View style={styles.track}>

@@ -1,6 +1,6 @@
 export const images = {
   background: require('../assets/app_background.png'),
-  logo: require('../assets/casino_niagara_logo.png'),
+  logo: require('../assets/niagara_logo.png'),
   qrPreview: require('../assets/qr_pass_preview.png'),
   onboardingServices: require('../assets/onboarding_services_preview.png'),
   onboardingPlan: require('../assets/onboarding_plan_preview.png'),
@@ -20,7 +20,7 @@ export const images = {
     meetingConvention: require('../assets/venue_meeting_convention_space.png'),
     parkingGarage: require('../assets/venue_parking_garage.png'),
     fallsviewEntrance: require('../assets/venue_fallsview_boulevard_entrance.png'),
-    casinoNiagaraGamingFloor: require('../assets/venue_casino_niagara_gaming_floor.png'),
+    niagaraGamingFloor: require('../assets/venue_niagara_gaming_floor.png'),
     lev2lSportsBar: require('../assets/venue_lev2l_sports_bar.png'),
     perksCafe: require('../assets/venue_perks_cafe.png'),
     marketBuffet: require('../assets/venue_market_buffet_area.png'),

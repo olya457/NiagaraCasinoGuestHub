@@ -13,7 +13,7 @@ export const events: VenueEvent[] = [
     guests: 'Up to 60 guests',
     dress: 'Smart Casual',
     summary:
-      'A soft live piano session with lounge seating, drinks, and a calm casino-side mood.',
+      'A soft live piano session with lounge seating, drinks, and a calm resort-side mood.',
     description:
       'Settle into the Atrium Lounge for an evening of refined live piano music. The resident pianist performs a curated set of classics and contemporary pieces. Guests may arrive at any time during the session and enjoy lounge service throughout.',
     icon: '🎵',
@@ -48,14 +48,14 @@ export const events: VenueEvent[] = [
     summary:
       'A short evening route through the main guest areas and photo-friendly venue corners.',
     description:
-      'Join a guided evening walk through the main halls and signature areas of the venue. The Night Hall Tour covers the reception gallery, atrium, and casino perimeter, with stops at key architectural details and photo-friendly spots.',
+      'Join a guided evening walk through the main halls and signature areas of the venue. The Night Hall Tour covers the reception gallery, atrium, and venue perimeter, with stops at key architectural details and photo-friendly spots.',
     icon: '🚶',
     accent: colors.mint,
   },
   {
-    id: 'casino-etiquette-talk',
-    title: 'Casino Etiquette Mini Talk',
-    room: 'Grand Casino Floor',
+    id: 'gaming-etiquette-talk',
+    title: 'Gaming Etiquette Mini Talk',
+    room: 'Grand Gaming Floor',
     date: 'Saturday',
     dateKey: '2026-05-31',
     time: '6:45 PM',
@@ -63,9 +63,9 @@ export const events: VenueEvent[] = [
     guests: 'Open to all guests',
     dress: 'Casual',
     summary:
-      'A quick and friendly introduction to basic casino floor etiquette for new visitors.',
+      'A quick and friendly introduction to basic gaming floor etiquette for new visitors.',
     description:
-      'A friendly 20-minute session held near the main entrance of the Grand Casino Floor. Staff cover basic floor etiquette, how to navigate different zones, and tips for first-time visitors. Questions are welcome at the end.',
+      'A friendly 20-minute session held near the main entrance of the Grand Gaming Floor. Staff cover basic floor etiquette, how to navigate different zones, and tips for first-time visitors. Questions are welcome at the end.',
     icon: 'ℹ️',
     accent: colors.blue,
   },

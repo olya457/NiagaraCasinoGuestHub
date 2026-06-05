@@ -127,7 +127,7 @@ function PassVisual({scale}: {scale: number}): React.JSX.Element {
   return (
     <View style={[styles.passCard, {transform: [{rotate: '-4deg'}, {scale}]}]}>
       <Text style={styles.passKicker}>GUEST ACCESS</Text>
-      <Text style={styles.passName}>Niagara Casino: Guest Hub</Text>
+      <Text style={styles.passName}>Niagara Guest Hub</Text>
       <View style={styles.passQr}>
         <QrMatrix size={108} color={colors.gold} />
       </View>

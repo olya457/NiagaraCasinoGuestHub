@@ -1,18 +1,18 @@
 import {images} from './assets';
 import type {VenueHall} from '../types';
 
-export const hallFilters = ['All', 'Casino', 'Dining', 'Lounge', 'Events'];
+export const hallFilters = ['All', 'Gaming', 'Dining', 'Lounge', 'Events'];
 
 export const venueHalls: VenueHall[] = [
   {
     id: 'fallsview-gaming-floor',
     title: 'Fallsview Gaming Floor',
-    tag: 'Casino',
-    category: 'Casino',
+    tag: 'Gaming',
+    category: 'Gaming',
     description:
-      'The Fallsview Gaming Floor is the main casino area inside Fallsview Casino Resort with bright ceiling lights, wide walking paths, and a lively evening atmosphere.',
+      'The Fallsview Gaming Floor is the main gaming area inside Fallsview Resort with bright ceiling lights, wide walking paths, and a lively evening atmosphere.',
     highlights: [
-      'Large casino floor',
+      'Large gaming floor',
       'Slot machine areas',
       'Table game sections',
       'Bright indoor lighting',
@@ -22,7 +22,7 @@ export const venueHalls: VenueHall[] = [
     ],
     hours: 'Open daily, hours may vary by resort schedule',
     location:
-      'Fallsview Casino Resort, 6380 Fallsview Boulevard — Main casino level',
+      'Fallsview Resort, 6380 Fallsview Boulevard — Main gaming level',
     image: images.halls.fallsviewGamingFloor,
   },
   {
@@ -39,10 +39,10 @@ export const venueHalls: VenueHall[] = [
       'Good for walking between activities',
       'Visitor-friendly layout',
       'Convenient break area',
-      'Close to casino and hotel zones',
+      'Close to gaming and hotel zones',
     ],
     hours: 'Hours vary by individual shop or dining location',
-    location: 'Fallsview Casino Resort — Galleria shopping and dining area',
+    location: 'Fallsview Resort — Galleria shopping and dining area',
     image: images.halls.galleriaShopsDining,
   },
   {
@@ -62,12 +62,12 @@ export const venueHalls: VenueHall[] = [
       'Event-based access',
     ],
     hours: 'Open according to event schedule',
-    location: 'Fallsview Casino Resort — Entertainment venue area',
+    location: 'Fallsview Resort — Entertainment venue area',
     image: images.halls.avalonTheatre,
   },
   {
     id: 'olg-stage',
-    title: 'OLG Stage at Fallsview Casino',
+    title: 'OLG Stage at Fallsview',
     tag: 'Events',
     category: 'Events',
     description:
@@ -82,7 +82,7 @@ export const venueHalls: VenueHall[] = [
       'Suitable for headline performances',
     ],
     hours: 'Open according to event schedule',
-    location: 'Fallsview Casino Resort area — OLG Stage entertainment venue',
+    location: 'Fallsview Resort area — OLG Stage entertainment venue',
     image: images.halls.olgStage,
   },
   {
@@ -91,7 +91,7 @@ export const venueHalls: VenueHall[] = [
     tag: 'Guest Area',
     category: 'Guest Area',
     description:
-      'A polished arrival and orientation zone connecting hotel rooms, dining, casino areas, and other resort services.',
+      'A polished arrival and orientation zone connecting hotel rooms, dining, gaming areas, and other resort services.',
     highlights: [
       'Hotel guest arrival zone',
       'Check-in style atmosphere',
@@ -102,7 +102,7 @@ export const venueHalls: VenueHall[] = [
       'Useful for first-time visitors',
     ],
     hours: 'Hotel lobby access generally available for guests throughout the day',
-    location: 'Fallsview Casino Resort Hotel — Main lobby area',
+    location: 'Fallsview Resort Hotel — Main lobby area',
     image: images.halls.fallsviewHotelLobby,
   },
   {
@@ -122,7 +122,7 @@ export const venueHalls: VenueHall[] = [
       'Reservation-based experience',
     ],
     hours: 'Hours may vary; reservations are recommended',
-    location: 'Fallsview Casino Resort — Spa area',
+    location: 'Fallsview Resort — Spa area',
     image: images.halls.damaraDaySpa,
   },
   {
@@ -142,7 +142,7 @@ export const venueHalls: VenueHall[] = [
       'Easy access from main guest routes',
     ],
     hours: 'Hours vary by restaurant and dining location',
-    location: 'Fallsview Casino Resort — Dining areas throughout the resort',
+    location: 'Fallsview Resort — Dining areas throughout the resort',
     image: images.halls.fallsviewDiningArea,
   },
   {
@@ -162,7 +162,7 @@ export const venueHalls: VenueHall[] = [
       'Reservation-friendly dining option',
     ],
     hours: 'Hours may vary by restaurant schedule',
-    location: 'Fallsview Casino Resort — Restaurant area',
+    location: 'Fallsview Resort — Restaurant area',
     image: images.halls.clubSteakSeafood,
   },
   {
@@ -179,10 +179,10 @@ export const venueHalls: VenueHall[] = [
       'Suitable for couples and groups',
       'Resort-connected location',
       'Convenient before shows',
-      'More relaxed than the casino floor',
+      'More relaxed than the gaming floor',
     ],
     hours: 'Hours may vary by restaurant schedule',
-    location: 'Fallsview Casino Resort — Dining area',
+    location: 'Fallsview Resort — Dining area',
     image: images.halls.ponteVecchio,
   },
   {
@@ -191,7 +191,7 @@ export const venueHalls: VenueHall[] = [
     tag: 'Casual Dining',
     category: 'Dining',
     description:
-      'A practical indoor dining zone for faster casual meals between casino time, shopping, events, and sightseeing.',
+      'A practical indoor dining zone for faster casual meals between activities, shopping, events, and sightseeing.',
     highlights: [
       'Quick casual meals',
       'Public seating area',
@@ -202,7 +202,7 @@ export const venueHalls: VenueHall[] = [
       'Useful between activities',
     ],
     hours: 'Hours may vary by food vendor',
-    location: 'Fallsview Casino Resort — Food court / casual dining area',
+    location: 'Fallsview Resort — Food court / casual dining area',
     image: images.halls.foodCourtArea,
   },
   {
@@ -216,13 +216,13 @@ export const venueHalls: VenueHall[] = [
       'Drinks and lounge seating',
       'Evening social atmosphere',
       'Useful meeting point',
-      'Close to casino and dining areas',
+      'Close to gaming and dining areas',
       'Good before or after shows',
       'Comfortable guest seating',
       'Premium indoor mood',
     ],
     hours: 'Hours vary by specific bar or lounge',
-    location: 'Fallsview Casino Resort — Bar and lounge areas throughout the property',
+    location: 'Fallsview Resort — Bar and lounge areas throughout the property',
     image: images.halls.resortBarLounge,
   },
   {
@@ -242,7 +242,7 @@ export const venueHalls: VenueHall[] = [
       'Active late-evening setting',
     ],
     hours: 'Hours vary by nightlife venue and schedule',
-    location: 'Fallsview Casino Resort — Nightlife and lounge areas',
+    location: 'Fallsview Resort — Nightlife and lounge areas',
     image: images.halls.nightlifeArea,
   },
   {
@@ -262,7 +262,7 @@ export const venueHalls: VenueHall[] = [
       'Reservation-based access',
     ],
     hours: 'Available according to booking and event schedule',
-    location: 'Fallsview Casino Resort — Meeting and convention area',
+    location: 'Fallsview Resort — Meeting and convention area',
     image: images.halls.meetingConvention,
   },
   {
@@ -277,12 +277,12 @@ export const venueHalls: VenueHall[] = [
       'Convenient for resort visitors',
       'Useful for event nights',
       'Connection to main property areas',
-      'Good for hotel and casino guests',
+      'Good for hotel and venue guests',
       'Practical arrival point',
       'Indoor route toward resort areas',
     ],
     hours: 'Parking access may vary by resort operations and event demand',
-    location: 'Fallsview Casino Resort — Parking garage area',
+    location: 'Fallsview Resort — Parking garage area',
     image: images.halls.parkingGarage,
   },
   {
@@ -291,7 +291,7 @@ export const venueHalls: VenueHall[] = [
     tag: 'Entrance',
     category: 'Guest Area',
     description:
-      'The outdoor-facing arrival point with resort building views, casino signage, and Fallsview district activity.',
+      'The outdoor-facing arrival point with resort building views, venue signage, and Fallsview district activity.',
     highlights: [
       'Main street-facing arrival zone',
       'Easy landmark for guests',
@@ -306,14 +306,14 @@ export const venueHalls: VenueHall[] = [
     image: images.halls.fallsviewEntrance,
   },
   {
-    id: 'casino-niagara-gaming-floor',
-    title: 'Casino Niagara Gaming Floor',
-    tag: 'Casino',
-    category: 'Casino',
+    id: 'niagara-gaming-floor',
+    title: 'Niagara Gaming Floor',
+    tag: 'Gaming',
+    category: 'Gaming',
     description:
-      'A separate casino property closer to Clifton Hill with a compact entertainment layout and easy access to the tourist district.',
+      'A separate gaming property closer to Clifton Hill with a compact entertainment layout and easy access to the tourist district.',
     highlights: [
-      'Separate Niagara casino location',
+      'Separate Niagara gaming location',
       'Gaming floor environment',
       'Close to Clifton Hill',
       'Tourist-friendly location',
@@ -321,9 +321,9 @@ export const venueHalls: VenueHall[] = [
       'Good for short city visits',
       'Different atmosphere from Fallsview',
     ],
-    hours: 'Open according to Casino Niagara schedule',
-    location: 'Casino Niagara, 5705 Falls Avenue, Niagara Falls, Ontario',
-    image: images.halls.casinoNiagaraGamingFloor,
+    hours: 'Open according to Niagara venue schedule',
+    location: '5705 Falls Avenue, Niagara Falls, Ontario',
+    image: images.halls.niagaraGamingFloor,
   },
   {
     id: 'lev2l-sports-bar',
@@ -331,7 +331,7 @@ export const venueHalls: VenueHall[] = [
     tag: 'Sports Bar',
     category: 'Lounge',
     description:
-      'A sports bar and entertainment area at Casino Niagara with many TV screens, casual food, and a lively group setting.',
+      'A sports bar and entertainment area at the Niagara venue with many TV screens, casual food, and a lively group setting.',
     highlights: [
       'Sports bar atmosphere',
       'Many TV screens',
@@ -339,10 +339,10 @@ export const venueHalls: VenueHall[] = [
       'Good for watching games',
       'Large seating area',
       'Lively group setting',
-      'Located inside Casino Niagara',
+      'Located inside the Niagara venue',
     ],
     hours: 'Hours may vary by day and event schedule',
-    location: 'Casino Niagara — LEV2L Sports Bar & Entertainment',
+    location: 'Niagara venue — LEV2L Sports Bar & Entertainment',
     image: images.halls.lev2lSportsBar,
   },
   {
@@ -359,10 +359,10 @@ export const venueHalls: VenueHall[] = [
       'Visitor-friendly service',
       'Easy indoor access',
       'Useful between activities',
-      'Located in Casino Niagara',
+      'Located in the Niagara venue',
     ],
     hours: 'Hours may vary by operating schedule',
-    location: 'Casino Niagara — Cafe area',
+    location: 'Niagara venue — Cafe area',
     image: images.halls.perksCafe,
   },
   {
@@ -371,18 +371,18 @@ export const venueHalls: VenueHall[] = [
     tag: 'Dining',
     category: 'Dining',
     description:
-      'A buffet-style dining option with variety and a casual atmosphere before returning to casino areas or sightseeing.',
+      'A buffet-style dining option with variety and a casual atmosphere before returning to gaming areas or sightseeing.',
     highlights: [
       'Buffet-style dining',
       'Casual meal experience',
       'Variety-focused food setup',
       'Good for groups',
-      'Convenient casino location',
+      'Convenient venue location',
       'Useful before sightseeing',
       'Relaxed guest atmosphere',
     ],
     hours: 'Hours may vary by operating schedule',
-    location: 'Casino Niagara — Dining area',
+    location: 'Niagara venue — Dining area',
     image: images.halls.marketBuffet,
   },
   {
@@ -391,10 +391,10 @@ export const venueHalls: VenueHall[] = [
     tag: 'Nearby Attraction',
     category: 'Guest Area',
     description:
-      'A nearby indoor attraction connected to the Falls Avenue visitor district and close to Casino Niagara and Clifton Hill.',
+      'A nearby indoor attraction connected to the Falls Avenue visitor district and close to Clifton Hill.',
     highlights: [
       'Indoor waterpark attraction',
-      'Close to Casino Niagara area',
+      'Close to Niagara visitor area',
       'Family-friendly activity',
       'Useful in colder weather',
       'Near hotels and tourist routes',
@@ -402,7 +402,7 @@ export const venueHalls: VenueHall[] = [
       'Connected to the Falls Avenue visitor district',
     ],
     hours: 'Hours vary by season and attraction schedule',
-    location: 'Falls Avenue resort area, near Casino Niagara and Clifton Hill',
+    location: 'Falls Avenue resort area, near Clifton Hill',
     image: images.halls.fallsviewWaterpark,
   },
 ];

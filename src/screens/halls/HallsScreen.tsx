@@ -121,7 +121,7 @@ const toneForTag = (tag: string) => {
   if (tag.includes('Events') || tag.includes('Entertainment')) {
     return colors.violet;
   }
-  if (tag.includes('Casino')) {
+  if (tag.includes('Gaming')) {
     return '#d14f3f';
   }
   return colors.mint;

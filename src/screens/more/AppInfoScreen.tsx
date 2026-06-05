@@ -25,12 +25,12 @@ export function AppInfoScreen({navigation}: Props): React.JSX.Element {
       <ScreenHeader title="App Info" back onBack={() => navigation.goBack()} />
       <View style={styles.hero}>
         <Image source={images.logo} style={styles.logo} resizeMode="contain" />
-        <Text style={styles.title}>Niagara Casino Guest Hub</Text>
+        <Text style={styles.title}>Niagara Guest Hub</Text>
         <Text style={styles.version}>Version 1.0 · Guest Guide</Text>
       </View>
       <InfoCard style={styles.about}>
         <Text style={styles.aboutText}>
-          Niagara Casino Guest Hub is a guest information and planning app for venue access, halls, services, events, Q&A support, and nearby visit ideas.
+          Niagara Guest Hub is a guest information and planning app for venue access, halls, services, events, Q&A support, and nearby visit ideas.
         </Text>
       </InfoCard>
       <InfoCard style={styles.features}>
