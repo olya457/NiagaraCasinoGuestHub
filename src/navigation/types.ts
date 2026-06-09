@@ -14,6 +14,8 @@ export type RootStackParamList = {
   PlaceMap: {placeId: string};
   SavedEvents: undefined;
   MyBookings: undefined;
+  VisitPlan: undefined;
+  GuestProfile: undefined;
   GuestTips: undefined;
   AppInfo: undefined;
 };

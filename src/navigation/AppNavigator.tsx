@@ -11,12 +11,14 @@ import {EventDetailScreen} from '../screens/events/EventDetailScreen';
 import {HallDetailScreen} from '../screens/halls/HallDetailScreen';
 import {AppInfoScreen} from '../screens/more/AppInfoScreen';
 import {FaqScreen} from '../screens/more/FaqScreen';
+import {GuestProfileScreen} from '../screens/more/GuestProfileScreen';
 import {GuestTipsScreen} from '../screens/more/GuestTipsScreen';
 import {MyBookingsScreen} from '../screens/more/MyBookingsScreen';
 import {NearbyPlaceDetailScreen} from '../screens/more/NearbyPlaceDetailScreen';
 import {NearbyPlacesScreen} from '../screens/more/NearbyPlacesScreen';
 import {PlaceMapScreen} from '../screens/more/PlaceMapScreen';
 import {SavedEventsScreen} from '../screens/more/SavedEventsScreen';
+import {VisitPlanScreen} from '../screens/more/VisitPlanScreen';
 import {OnboardingScreen} from '../screens/onboarding/OnboardingScreen';
 import {FullQrScreen} from '../screens/pass/FullQrScreen';
 import {BookingScreen} from '../screens/services/BookingScreen';
@@ -78,7 +80,10 @@ function AppNavigator(): React.JSX.Element {
             <Stack.Screen name="FullQr" component={FullQrScreen} />
             <Stack.Screen name="HallDetail" component={HallDetailScreen} />
             <Stack.Screen name="Booking" component={BookingScreen} />
-            <Stack.Screen name="BookingSuccess" component={BookingSuccessScreen} />
+            <Stack.Screen
+              name="BookingSuccess"
+              component={BookingSuccessScreen}
+            />
             <Stack.Screen name="EventDetail" component={EventDetailScreen} />
             <Stack.Screen name="CreateEvent" component={CreateEventScreen} />
             <Stack.Screen name="Faq" component={FaqScreen} />
@@ -90,6 +95,8 @@ function AppNavigator(): React.JSX.Element {
             <Stack.Screen name="PlaceMap" component={PlaceMapScreen} />
             <Stack.Screen name="SavedEvents" component={SavedEventsScreen} />
             <Stack.Screen name="MyBookings" component={MyBookingsScreen} />
+            <Stack.Screen name="VisitPlan" component={VisitPlanScreen} />
+            <Stack.Screen name="GuestProfile" component={GuestProfileScreen} />
             <Stack.Screen name="GuestTips" component={GuestTipsScreen} />
             <Stack.Screen name="AppInfo" component={AppInfoScreen} />
           </Stack.Navigator>

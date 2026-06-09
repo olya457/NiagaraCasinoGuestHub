@@ -17,6 +17,7 @@ import type {VenueEvent} from '../../types';
 import {
   getMonthTitle,
   getShortDayName,
+  getTodayKey,
   getWeekStart,
   makeDate,
   toDateKey,
@@ -24,7 +25,7 @@ import {
 
 type Navigation = NativeStackNavigationProp<RootStackParamList>;
 
-const todayKey = '2026-05-30';
+const todayKey = getTodayKey();
 const baseWeekOffset = 8;
 
 const getSubtitle = (offset: number) => {

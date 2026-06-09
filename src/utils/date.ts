@@ -49,6 +49,26 @@ export const toDateKey = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
+export const getTodayKey = () => toDateKey(new Date());
+
+export const addDaysToKey = (dateKey: string, amount: number) => {
+  const date = makeDate(dateKey);
+  date.setDate(date.getDate() + amount);
+  return toDateKey(date);
+};
+
+export const getShortDate = (dateKey: string) => {
+  const date = makeDate(dateKey);
+  return `${shortMonths[date.getMonth()]} ${date.getDate()}`;
+};
+
+export const getBookingDate = (dateKey: string) => {
+  const date = makeDate(dateKey);
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${month}/${day}/${date.getFullYear()}`;
+};
+
 export const getWeekStart = (date: Date) => {
   const start = new Date(date);
   const day = start.getDay();
@@ -58,11 +78,14 @@ export const getWeekStart = (date: Date) => {
 
 export const getShortDayName = (date: Date) => shortDays[date.getDay()];
 
-export const getLongDayName = (dateKey: string) => longDays[makeDate(dateKey).getDay()];
+export const getLongDayName = (dateKey: string) =>
+  longDays[makeDate(dateKey).getDay()];
 
 export const getDateTitle = (dateKey: string) => {
   const date = makeDate(dateKey);
-  return `${longDays[date.getDay()]}, ${shortMonths[date.getMonth()]} ${date.getDate()}`;
+  return `${longDays[date.getDay()]}, ${
+    shortMonths[date.getMonth()]
+  } ${date.getDate()}`;
 };
 
 export const getMonthTitle = (start: Date, end: Date) => {

@@ -1,13 +1,21 @@
 import {colors} from '../constants/theme';
 import type {VenueEvent} from '../types';
+import {addDaysToKey, getLongDayName, getTodayKey} from '../utils/date';
+
+const eventDate = (offset: number) => {
+  const dateKey = addDaysToKey(getTodayKey(), offset);
+  return {
+    date: getLongDayName(dateKey),
+    dateKey,
+  };
+};
 
 export const events: VenueEvent[] = [
   {
     id: 'velvet-piano-night',
     title: 'Velvet Piano Night',
     room: 'Atrium Lounge',
-    date: 'Friday',
-    dateKey: '2026-05-30',
+    ...eventDate(0),
     time: '7:30 PM',
     type: 'Music Evening',
     guests: 'Up to 60 guests',
@@ -23,13 +31,13 @@ export const events: VenueEvent[] = [
     id: 'chefs-table-preview',
     title: "Chef's Table Preview",
     room: 'Fallsview Dining Hall',
-    date: 'Friday',
-    dateKey: '2026-05-30',
+    ...eventDate(0),
     time: '8:00 PM',
     type: 'Dining Event',
     guests: 'Up to 24 guests',
     dress: 'Smart Casual to Formal',
-    summary: 'A small tasting evening with selected dishes and dessert pairings.',
+    summary:
+      'A small tasting evening with selected dishes and dessert pairings.',
     description:
       'An intimate culinary event featuring a curated tasting menu by the resident chef team. The evening includes appetizers, main selections, and artisanal dessert pairings with beverage suggestions for each course.',
     icon: '🍽️',
@@ -39,8 +47,7 @@ export const events: VenueEvent[] = [
     id: 'night-hall-tour',
     title: 'Night Hall Tour',
     room: 'Guest Reception Gallery',
-    date: 'Saturday',
-    dateKey: '2026-05-31',
+    ...eventDate(1),
     time: '9:15 PM',
     type: 'Guided Experience',
     guests: 'Up to 20 guests',
@@ -56,8 +63,7 @@ export const events: VenueEvent[] = [
     id: 'casino-etiquette-talk',
     title: 'Casino Etiquette Mini Talk',
     room: 'Grand Casino Floor',
-    date: 'Saturday',
-    dateKey: '2026-05-31',
+    ...eventDate(1),
     time: '6:45 PM',
     type: 'Guest Info',
     guests: 'Open to all guests',
@@ -73,8 +79,7 @@ export const events: VenueEvent[] = [
     id: 'private-celebration-showcase',
     title: 'Private Celebration Setup Showcase',
     room: 'Event Ballroom',
-    date: 'Sunday',
-    dateKey: '2026-06-01',
+    ...eventDate(2),
     time: '5:30 PM',
     type: 'Decor Preview',
     guests: 'Up to 40 guests',

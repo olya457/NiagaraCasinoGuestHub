@@ -1,52 +1,35 @@
 import React, {useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
+import qrcode from 'qrcode-generator';
 
 type Props = {
   size: number;
+  payload?: string;
   color?: string;
   quietColor?: string;
 };
 
-const cells = 29;
-
-const finder = (row: number, col: number, top: number, left: number) => {
-  const r = row - top;
-  const c = col - left;
-  if (r < 0 || c < 0 || r > 6 || c > 6) {
-    return false;
-  }
-  return r === 0 || c === 0 || r === 6 || c === 6 || (r >= 2 && r <= 4 && c >= 2 && c <= 4);
-};
-
-const filled = (row: number, col: number) => {
-  if (
-    finder(row, col, 2, 2) ||
-    finder(row, col, 2, cells - 9) ||
-    finder(row, col, cells - 9, 2)
-  ) {
-    return true;
-  }
-
-  const value =
-    (row * 7 + col * 11 + row * col * 3 + (row % 5) * 13 + (col % 4) * 17) % 10;
-  return value === 0 || value === 2 || value === 5 || value === 7;
-};
-
 export function QrMatrix({
   size,
+  payload = 'Niagara Casino Guest Hub',
   color = '#ffffff',
   quietColor = 'transparent',
 }: Props): React.JSX.Element {
-  const dot = size / cells;
-  const blocks = useMemo(
-    () =>
-      Array.from({length: cells * cells}, (_, index) => {
-        const row = Math.floor(index / cells);
-        const col = index % cells;
-        return {id: `${row}-${col}`, active: filled(row, col)};
+  const {blocks, cells} = useMemo(() => {
+    const qr = qrcode(0, 'M');
+    qr.addData(payload);
+    qr.make();
+    const moduleCount = qr.getModuleCount();
+    return {
+      cells: moduleCount,
+      blocks: Array.from({length: moduleCount * moduleCount}, (_, index) => {
+        const row = Math.floor(index / moduleCount);
+        const col = index % moduleCount;
+        return {id: `${row}-${col}`, active: qr.isDark(row, col)};
       }),
-    [],
-  );
+    };
+  }, [payload]);
+  const dot = size / cells;
 
   return (
     <View style={[styles.wrap, {width: size, height: size}]}>

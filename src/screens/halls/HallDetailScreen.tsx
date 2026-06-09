@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppScreen} from '../../components/AppScreen';
 import {Badge} from '../../components/Badge';
 import {InfoCard} from '../../components/InfoCard';
+import {PrimaryButton} from '../../components/PrimaryButton';
 import {ScreenHeader} from '../../components/ScreenHeader';
 import {colors, typography} from '../../constants/theme';
 import {venueHalls} from '../../data/venueHalls';
 import {useResponsive} from '../../hooks/useResponsive';
 import type {RootStackParamList} from '../../navigation/types';
+import {guestStorage} from '../../storage/guestStorage';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'HallDetail'>;
 
@@ -16,12 +19,48 @@ export function HallDetailScreen({
   route,
   navigation,
 }: Props): React.JSX.Element {
-  const hall = venueHalls.find(item => item.id === route.params.hallId) ?? venueHalls[0];
+  const hall =
+    venueHalls.find(item => item.id === route.params.hallId) ?? venueHalls[0];
   const responsive = useResponsive();
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      let mounted = true;
+      guestStorage.getSavedHalls().then(ids => {
+        if (mounted) {
+          setSaved(ids.includes(hall.id));
+        }
+      });
+      return () => {
+        mounted = false;
+      };
+    }, [hall.id]),
+  );
+
+  const toggleSave = async () => {
+    if (saving) {
+      return;
+    }
+    setSaving(true);
+    if (saved) {
+      await guestStorage.removeHall(hall.id);
+      setSaved(false);
+    } else {
+      await guestStorage.saveHall(hall.id);
+      setSaved(true);
+    }
+    setSaving(false);
+  };
 
   return (
     <AppScreen compactTop>
-      <ScreenHeader title={hall.title} back onBack={() => navigation.goBack()} />
+      <ScreenHeader
+        title={hall.title}
+        back
+        onBack={() => navigation.goBack()}
+      />
       <Image
         source={hall.image}
         style={[styles.hero, {height: responsive.heroHeight}]}
@@ -34,6 +73,13 @@ export function HallDetailScreen({
         </View>
         <Badge label={hall.tag} tone={toneForTag(hall.tag)} />
       </View>
+      <PrimaryButton
+        title={saved ? 'Saved to Visit Plan ✓' : 'Add to Visit Plan'}
+        variant={saved ? 'ghost' : 'outline'}
+        onPress={toggleSave}
+        disabled={saving}
+        style={styles.saveButton}
+      />
       <InfoCard style={styles.highlights}>
         <Text style={styles.cardTitle}>Highlights</Text>
         {hall.highlights.map(item => (
@@ -58,7 +104,11 @@ export function HallDetailScreen({
 }
 
 const toneForTag = (tag: string) => {
-  if (tag.includes('Dining') || tag.includes('Restaurant') || tag.includes('Cafe')) {
+  if (
+    tag.includes('Dining') ||
+    tag.includes('Restaurant') ||
+    tag.includes('Cafe')
+  ) {
     return colors.amber;
   }
   if (tag.includes('Lounge') || tag.includes('Nightlife')) {
@@ -101,6 +151,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 23,
     marginTop: 8,
+  },
+  saveButton: {
+    alignSelf: 'flex-start',
+    minHeight: 42,
+    marginTop: 18,
   },
   highlights: {
     padding: 18,

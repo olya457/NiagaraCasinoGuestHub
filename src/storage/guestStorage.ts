@@ -1,14 +1,33 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type {BookingRecord, VenueEvent} from '../types';
+import type {
+  BookingRecord,
+  GuestProfile,
+  VenueEvent,
+  VisitTaskState,
+} from '../types';
 
 const keys = {
   onboarding: 'ncgh:onboarding-complete',
   savedEvents: 'ncgh:saved-events',
   bookings: 'ncgh:bookings',
   customEvents: 'ncgh:custom-events',
+  guestProfile: 'ncgh:guest-profile',
+  visitTasks: 'ncgh:visit-tasks',
+  savedHalls: 'ncgh:saved-halls',
+  passId: 'ncgh:pass-id',
 };
 
-const readJson = async <T,>(key: string, fallback: T): Promise<T> => {
+const defaultProfile: GuestProfile = {
+  name: '',
+  room: '',
+  visitType: 'Leisure visit',
+  arrivalDate: '',
+  departureDate: '',
+  companion: '',
+  note: '',
+};
+
+const readJson = async <T>(key: string, fallback: T): Promise<T> => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value ? (JSON.parse(value) as T) : fallback;
@@ -17,8 +36,14 @@ const readJson = async <T,>(key: string, fallback: T): Promise<T> => {
   }
 };
 
-const writeJson = async <T,>(key: string, value: T) => {
+const writeJson = async <T>(key: string, value: T) => {
   await AsyncStorage.setItem(key, JSON.stringify(value));
+};
+
+const makePassId = () => {
+  const year = new Date().getFullYear();
+  const randomPart = Math.floor(100000 + Math.random() * 900000).toString(36);
+  return `NCGH-${year}-${randomPart.toUpperCase()}`;
 };
 
 export const guestStorage = {
@@ -39,6 +64,45 @@ export const guestStorage = {
       keys.savedEvents,
       saved.filter(id => id !== eventId),
     );
+  },
+  getGuestProfile: async () =>
+    readJson<GuestProfile>(keys.guestProfile, defaultProfile),
+  saveGuestProfile: async (profile: GuestProfile) =>
+    writeJson(keys.guestProfile, {
+      ...profile,
+      updatedAt: new Date().toISOString(),
+    }),
+  getVisitTaskState: async () => readJson<VisitTaskState>(keys.visitTasks, {}),
+  setVisitTaskComplete: async (taskId: string, completed: boolean) => {
+    const taskState = await readJson<VisitTaskState>(keys.visitTasks, {});
+    await writeJson(keys.visitTasks, {
+      ...taskState,
+      [taskId]: completed,
+    });
+  },
+  resetVisitTasks: async () => writeJson<VisitTaskState>(keys.visitTasks, {}),
+  getSavedHalls: async () => readJson<string[]>(keys.savedHalls, []),
+  saveHall: async (hallId: string) => {
+    const savedHalls = await readJson<string[]>(keys.savedHalls, []);
+    if (!savedHalls.includes(hallId)) {
+      await writeJson(keys.savedHalls, [...savedHalls, hallId]);
+    }
+  },
+  removeHall: async (hallId: string) => {
+    const savedHalls = await readJson<string[]>(keys.savedHalls, []);
+    await writeJson(
+      keys.savedHalls,
+      savedHalls.filter(id => id !== hallId),
+    );
+  },
+  getPassId: async () => {
+    const stored = await AsyncStorage.getItem(keys.passId);
+    if (stored) {
+      return stored;
+    }
+    const passId = makePassId();
+    await AsyncStorage.setItem(keys.passId, passId);
+    return passId;
   },
   getCustomEvents: async () => readJson<VenueEvent[]>(keys.customEvents, []),
   addCustomEvent: async (event: VenueEvent) => {

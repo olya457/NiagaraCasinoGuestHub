@@ -18,6 +18,18 @@ const menu: {
   route: keyof RootStackParamList;
 }[] = [
   {
+    title: 'Visit Plan',
+    subtitle: 'Checklist, bookings, events, and saved venue areas',
+    icon: '✓',
+    route: 'VisitPlan',
+  },
+  {
+    title: 'Guest Profile',
+    subtitle: 'Personalize your pass and visit details',
+    icon: 'ID',
+    route: 'GuestProfile',
+  },
+  {
     title: 'QR & Help',
     subtitle: 'Quick answers for common questions',
     icon: '❔',
@@ -68,15 +80,30 @@ export function MoreScreen(): React.JSX.Element {
             key={item.title}
             onPress={() => navigation.navigate(item.route as never)}
             style={({pressed}) => pressed && styles.pressed}>
-            <InfoCard style={[styles.card, responsive.isSmallHeight && styles.cardSmall]}>
-              <View style={[styles.iconBox, responsive.isSmallHeight && styles.iconBoxSmall]}>
-                <Text style={[styles.icon, responsive.isSmallHeight && styles.iconSmall]}>
+            <InfoCard
+              style={[
+                styles.card,
+                responsive.isSmallHeight && styles.cardSmall,
+              ]}>
+              <View
+                style={[
+                  styles.iconBox,
+                  responsive.isSmallHeight && styles.iconBoxSmall,
+                ]}>
+                <Text
+                  style={[
+                    styles.icon,
+                    responsive.isSmallHeight && styles.iconSmall,
+                  ]}>
                   {item.icon}
                 </Text>
               </View>
               <View style={styles.textBlock}>
                 <Text
-                  style={[styles.title, responsive.isSmallHeight && styles.titleSmall]}
+                  style={[
+                    styles.title,
+                    responsive.isSmallHeight && styles.titleSmall,
+                  ]}
                   numberOfLines={1}
                   adjustsFontSizeToFit>
                   {item.title}
@@ -90,7 +117,11 @@ export function MoreScreen(): React.JSX.Element {
                   {item.subtitle}
                 </Text>
               </View>
-              <Text style={[styles.chevron, responsive.isSmallHeight && styles.chevronSmall]}>
+              <Text
+                style={[
+                  styles.chevron,
+                  responsive.isSmallHeight && styles.chevronSmall,
+                ]}>
                 ›
               </Text>
             </InfoCard>

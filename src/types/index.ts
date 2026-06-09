@@ -12,6 +12,17 @@ export type VenueHall = {
   image: ImageSourcePropType;
 };
 
+export type GuestProfile = {
+  name: string;
+  room: string;
+  visitType: string;
+  arrivalDate: string;
+  departureDate: string;
+  companion: string;
+  note: string;
+  updatedAt?: string;
+};
+
 export type GuestService = {
   id: string;
   title: string;
@@ -69,3 +80,12 @@ export type BookingRecord = {
   notes: string;
   createdAt: string;
 };
+
+export type VisitTask = {
+  id: string;
+  title: string;
+  detail: string;
+  accent: string;
+};
+
+export type VisitTaskState = Record<string, boolean>;
