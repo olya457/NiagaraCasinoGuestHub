@@ -1,4 +1,4 @@
-package com.niagaracasinoguesthub
+package com.niagara.guesthub
 
 import android.app.Application
 import com.facebook.react.PackageList

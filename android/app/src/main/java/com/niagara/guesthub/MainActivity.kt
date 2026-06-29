@@ -1,4 +1,4 @@
-package com.niagaracasinoguesthub
+package com.niagara.guesthub
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
